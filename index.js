@@ -34,7 +34,12 @@ app.get('/jogar/:slug', async (req, res) => {
         console.log(`URL do Canva encontrada: ${targetUrl}`);
 
         // 2. O servidor "visita" o site do Canva para pegar o conteúdo
-        const response = await axios.get(targetUrl);
+        const response = await axios.get(targetUrl, {
+    headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+});
+
         
         // 3. O servidor entrega o conteúdo para o usuário, mascarando a URL
         res.send(response.data);
